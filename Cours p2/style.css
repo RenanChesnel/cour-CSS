@@ -1,0 +1,318 @@
+:root{
+    --color1:green;
+    --color2:pink;
+    --color3:#393b4b;
+    --color4:rgb(18,19,19);
+
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: url(./assets/bg.jpg) center/cover;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*cacher tout ce qui depasse de la page : pour immage annimé spaceship */
+    overflow: hidden;
+}
+.card{
+    background: rgba(18, 1, 1, 0.338);
+    width: calc(100% - 50px);
+    padding: 20px 20px 6px;
+    box-shadow: 1px 6px 11px 0px black ;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+}
+
+   /* integration d'une contunue sans passer par HTML */
+.card::before{
+    content: "\2730";
+    /* absolute permet d'enlever toute fixité ou lien avec rest */
+    position: absolute;
+    /* augmenter taille de l'étoile */
+    font-size: 2.4rem;
+    top: 14px;
+    right: 20px;
+}
+h1{
+    margin-bottom: 24px;
+    position: relative;
+}
+/*creer une barre de separatio*/
+h1::after{
+    content: "";
+    position: absolute;
+    background: var(--color2);
+    height: 3px;
+    width: 100%;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    /*lancer l'animation / forward permet de conserver la barre à la fin*/
+    animation: h1anim 10s ease-in-out forwards;
+    /* permet de demarrer à droite ou au centre ou à gauche ... */
+    transform-origin: center;
+}
+/*faire apparaitre la barre en annimation*/
+@keyframes h1anim{
+    100% {
+        transform:translateX(-50%) scaleX(1);
+    }
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.polygon-container{
+ /* fiare une ombre au ploygon */
+ filter: drop-shadow(-1px 6px 3px var(--color2));
+ /* Centrer : ! mettre le parent en grid !  */
+ place-self: center left;
+}
+.polygon{
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    background: linear-gradient(135deg, var(--color2) 0% , var(--color3) 100%);
+    height: 100px;
+    width: 100px;
+}
+.polygon::after{
+    content: "un text";
+    position: absolute;
+    color: var(--color1);
+    background: var(--color4);
+    /* centrer element */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    padding: 4px;
+    text-align: center;
+}
+p{
+    /* ecartement entre les ligne */
+    line-height: 26px;
+    margin: 20px 0;
+    /* ne presenter que les 4 premiere lignes du text en visible */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    /* meme ecartement sur chaque ligne comme word */
+    text-align: justify;
+
+} 
+/* parametrer la couleru du text selectioné  */
+p::selection{
+    /* surlignage */
+    background: var(--color2);
+    /* couleur du text */
+    color: var(--color3);
+}
+/* changer comportement des checkbox */
+.checkbox-container{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0 30px;
+    /*ajout de la perspective pour l'animation 3D
+    plus le chiffre grand plus la perspective est faible*/
+    perspective: 35px;
+}
+input[type="checkbox"]{
+    display: none;
+    
+}
+
+input[type="checkbox"]:checked + label{
+   background: rgb(147, 223, 33);
+   transform: scale(1.2);
+   filter: brightness(110%);
+}
+label{
+    cursor: pointer;
+    border: 1px solid var(--color1);
+    background: var(--color3);
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.2s;
+    padding: 10px;
+    /*empecher de selectionner le text des boutons*/
+    user-select: none;
+}
+/*mettre une annimation sur le label*/
+label:first-of-type:hover{
+    animation: label1 1s infinite linear;
+}
+@keyframes label1 {
+    50% {
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+/*mettre une annimation 3D sur le label 2 (4eme enfant)*/
+label:nth-child(4):hover{
+    animation: label2 3s infinite linear;
+}
+/*Ne pas oublier la perspctive sur le parent*/
+@keyframes label2 {
+    33%{
+        transform: translateZ(30px);
+    }
+    66%{
+        transform: translateZ(-40px);
+    }
+    100%{
+        transform: translateZ(0);
+    }
+}
+
+.e-mail{
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* selectioner l'input qui se trouve dans le-mail */
+.e-mail input{
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    /*mettre la border en transparent pour eviter 
+    le chanchament de taille (masquer pour comprendre)*/
+    border: 3px solid transparent;
+    transition: 0.3s;
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color1);
+    min-width: 150px;
+    width: 35%;
+    max-width: 300px;
+}
+/* applique quand on est dans l'input (entrain de taper)=>focus */
+input[type="text"]:focus{
+    background: transparent;
+    border: 3px solid var(--color2);
+    border-radius: 20px;
+}
+input[type="text"]::placeholder{
+    color: var(--color2);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+button{
+    cursor: pointer;
+    background: var(--color2);
+    border: none;
+    font-size: 1.3rem;
+    padding: 10px 20px;
+    border-radius: 150px;
+    margin: 0 auto;
+    color: black;
+    /*centrage du boutton*/
+    display: block;
+    transition: 0.4s;
+}
+button:hover{
+    letter-spacing: 2px;
+    
+}
+button:hover + a,
+a:hover {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 0.3s;
+      /*pour n'afficher que lorsque l'on est sur valider*/
+    visibility: visible;
+}
+/*action losque l'on clique sur le bouton*/
+button:active{
+    transform: scale(1.2);
+    background: yellow;
+}
+a{
+    color: var(--color2);
+    text-align: center;
+    display: block;
+    opacity: 0;
+    /*pour n'afficher que lorsque l'on est sur valider*/
+    visibility: hidden;
+    transform: translateY(20px);
+    
+}
+a:visited{
+    color: var(--color1);
+}
+
+/*animation d'une immage*/
+img{
+    height: 80px;
+    position: absolute;
+    filter: drop-shadow(0px 6px 3px rgba(255,255,0,0.6));
+    /*mettre le vaisseau en arrière plan*/
+    z-index: -1;
+    animation: spaceship 6s infinite linear;
+}
+@keyframes spaceship{
+    0%{
+        top : 2%;
+        left: 2%;
+        transform: rotate(0deg);
+    }
+    10%{
+        top : 6%;
+        left: 30%;
+        transform: rotate(20deg);
+    }
+    20%{
+        top : 9%;
+        left: 60%;
+        transform: rotate(90deg);
+    }
+    30%{
+        top : 0%;
+        left: 80%;
+        transform: rotate(150deg);
+    }
+    40%{
+        top : 20%;
+        left: 120%;
+        transform: rotate(100deg);
+    }
+    50%{
+        top : 50%;
+        left: 80%;
+        transform: rotate(70deg);
+    }
+    60%{
+        top : 90%;
+        left: 90%;
+        transform: rotate(50deg);
+    }
+    70%{
+        top : 110%;
+        left: 50%;
+        transform: rotate(20deg);
+    }
+    80%{
+        top : 85%;
+        left: 30%;
+        transform: rotate(-20deg);
+    }
+    90%{
+        top : 50%;
+        left: 15%;
+        transform: rotate(5deg);
+    }
+    100%{
+        top : 2%;
+        left: 2%;
+        transform: rotate(0deg);
+    }
+
+}

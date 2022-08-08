@@ -1,0 +1,229 @@
+ATTENTION : les virgule sont remplcer par des point (separateur decimal)
+
+Les fondementaux :
+- Selecteur ==> determine à quel element doit etre appliqué une style (mot, paragraphe , ligne, etc ...)
+- propriété ==> determine le style qui va etre appliquer à un element (changer couleur, taille, etc ...)
+- valeur ==> determine le comportement d'une propriété (valeur d'un couleur : bleu, vert, gris, etc ...)
+
+ou ecrire le CSS :
+- dans l'élément head
+- dans la balise ouvrante d'un élément
+- dans un fichier CSS séparé (méthode à privilégier)
+	==> pour lier un fichier CSS et HTML, on ecrit :
+	link rel="stylsheet"href=" fichiercss.css"/>
+	
+ecrire un commentaire :
+/"Je suis un commentaire"/
+
+==> LES SELECTEUR
+
+attribut permettant de defnir une infinité de style diferents à des element:
+- class : applique le meme style à diferents elements choisi
+- id : different style à des element de meme type (pour les element unique d'une page : logo par exemple)
+
+attribuer u  style à un mot ou groupe de mot (a eviter si on trouve autre solution )
+- div (element de block)
+- span (element de inline)
+
+Definition element de type block (p, h1, h2, header, article, footer, ol, ul, dl, table, ...):
+- commence sur nouvelle ligne
+- occupe toute la largeur dispo
+- peuvent etre imriquer les uns dans les autres et peuvent contenir des elements de type inline
+
+Definition element de type inline (em, strong, mark, a, img, ...):
+- ne commence pas sur une nouvelle ligne
+- occupe seulement la largeur necessaire
+- peuvent contenir d'autres element de type inline mais pas d'élément de type block
+
+SELECTEUR AVANCES :
+* permet d'afficher un style à toute la page
+appliquer un style aux elements A & B : 
+	A, B {propriété, valeur;}
+Selectioner un element B contenu dans A : 
+	A B {propriété, valeur;}
+Selectionner plusieurs element A et B : 
+	A + B {propriété, valeur;}
+selectionner tous les elements D possédant un attribut particulier et une valeur exactement: 
+	D[attribut="valeur"] {propriété, valeur;}
+selectionner tous les element E possédant un attribut particulier : 
+	E[attribut*="valeur"] {propriété, valeur;}
+	
+==> PROPRIETE font / couleur / opacité
+
+taille du character : font-size peut prendre 2 valeurs
+- valeur absolut (pixel ou en point)
+- valeur relative (em, ex, %)
+
+font-style : changer l'inclinaison d'un texte (italique)
+- normal
+- italic (similaire à oblique et à privilégier)
+- oblique
+- inherit : hérite du style de l'element parent (l'element du dessus)
+
+font-weight (fras)
+- normal
+- bold ==> gras
+- bolder ==> plus gras
+- lighter ==>
+- inherit
+
+line-height : ecart entre les lignes de texte (env 1.5 x taille du text)
+
+font-family : police d'ecriture
+pour la liste : consulter les web safe font
+
+color (3 type) :
+- coueur exacte (limité à 16 couleurs) ==> ex : color:red 
+- exadecimal (% de rouge,vert,bleu) de 00 à FF ==> ex color:#3478BC
+- RGB (red, green, blu) ==> ex color:rgb(150,150,150)
+
+opacity : 
+- (transparent (0) . opaque (1) ) ==> opaccity:0.8
+- rgba ==> color.rgba(150,150,150,0.8)
+
+==> PROPROTE DE TYPE TEXT-...
+
+text-aline :
+- right
+- left
+- center
+- justify
+- inherit
+
+text-decoration : modi
+hunderline : souligner le texte
+overline : sur ligner le text
+line flow : barrer le text
+blink : text va clignoter
+inherite
+none : pas de decoration
+
+text-indent : decaler le text à droite(-) ou à gauche (+) (px, pt, em,%)
+ex : text-indent:10px
+
+text-transform : transforme character
+uppercase : transorme tout le text en majuscule
+capitalize : seulement la premiere en majuscule
+lowercase : transforme toutes les lettre en minuscule
+none
+inherite
+
+letter-spacing : espace entre les lettre (px, pt, em, %)
+
+wordspacing : espace entre les mots (px, pt, em, %)
+
+text-shadow : ombre au text (L horizontal,L vertical, rayon , couleur)
+ex : text-shadow:10px 10px 5px black;  
+
+==> LE MODEL DES BOITE (mise ne page et positon des elements)
+Boite (hauteur, largeur) ==> height:100px & width:50px
+
+padding : marge interieur de l'element 
+-padding-top
+-padding-bottom
+-padding-right
+-padding-left
+
+border : bordure de l'element
+- border-width:solid ou dotted ou dashed ou double ou et ...
+- border-style: 
+	ex (metre une bordure à gauche uniquement) : border-left-style:solid
+- border-color;
+- border-radius:10px ==> (arrondit le angle)
+	ex pour de coin diférents : border-top-left-radius:15px
+
+margin : marge exterieur de l'élement
+-margin-top
+-margin-bottom
+-margin-right
+-margin-left
+
+box-shadow : 
+- decalage horizontal de l'ombre
+- decalae vertial de l'ombre
+- decalage flou gaussien de l'ombre
+- couleur de l'ombre
+	ex : box-shadow:2px 2px 3px black
+- inset : ombre interieur (à ajouté si besoin)
+	ex : box-shadow:2px 2px 3px black inset
+	
+==> PROPRITE D'ALIGNEMENT DES UN PAR RAPPORT AUX AUTRES
+
+float : disposition du pararaphe (droite, gauche, etc ...)
+
+display : 
+- inline
+- block
+- inline-block (meilleur compromis)
+- none (element ne s'affiche pas)
+
+position: (aligner des elements)
+- statique (par defaut)
+- absolut (possibilité de placer l'élément n'importe ou)
+- fixed ()
+- relavive
+
+raccoucis :
+font:font-style/font-weight/font-size/line-height/font-family
+border:border-width/border-style/border-color
+margin:margin-top/margin-right/margin-bottom/margin-left
+background:color/image/repeat/attachment/position
+
+Background:
+- color
+- image:url(chemin/ma-photo.jpg)
+- repeat: repeat-x / repeat-y / no-repeat
+- attachment: fixed / scroll (permet de fixer ou pas le fond)
+- position: 100px 5px
+
+==> AVOIR PLUSIEURS IMAGES DE FONDS
+backround:url("capture.jpg") fixed no-repeat top left
+
+background:url("capture.jpg") fixed no-repeat top left,
+			url("capture2.jpg") fixed no-repeat top right,
+			url("capture3.jpg") fixed no-repeat bottom left;
+
+==> FAIRE UN DEGRADE D'IMAGE
+
+prefixes vendeur:
+chrome & safari : -webkit-
+mozilla : -moz-
+IE : -ms-
+Opera : -o-
+
+degradé linéaire
+background:linear-gradient(blue,red);
+background:-webkiz-linear-gradient(blue,red) ==> avec prefix vendeur
+degradé de gauche à droite : background:linear-gradient(to bottom right, blue,red);
+degradé angulaire : background:linear-gradient(150deg, blue,red);
+
+dégradé radial
+background:radial-gradient(blue,red);
+si on veut positioner le centre : background:radial-gradient(50px 5px,blue,red);
+
+==> LES IMAGES
+jpg : photo
+png : image
+gif : animé
+
+img{
+	height:500px;
+	width:500x;
+	display:block;
+	border:50px solid green;
+	padding:300px;
+	margin: 100px;
+	}
+	
+==> L'AUDIO + VIDEO (reprendre la video)
+
+==> LES TABLEAUX
+td{
+	border:1px solid black;
+}
+table{
+	border-collapse:collapse;
+}
+
+
+

@@ -1,0 +1,65 @@
+/* centrer un element horizontalement parfaitement */
+/*si lélément est en bloc*/
+.titre{
+    text-align: center;
+}
+.boite{
+    margin: 0 auto;
+    display: block; /*si il n'est pas en block à la base (img, btn, span, a)*/
+}
+
+/* *************** FLEX ******************** */
+
+/* centrer un element dans sa boite (enfant unique) */
+.parent-d-un-element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* repartir equitablement sur une meme ligne des elements dans la page */
+.parent-de-plusieurs-enfants{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* aligner les element d'une nav bar */
+ul{
+    display: flex;
+    align-items: center;
+}
+
+/* ****************** GRID ********************* */
+
+/* repartir précisement des element dans la largeur avec des tailles diferentes */
+.parent-des-eements{
+    display: grid;
+    grid-template-columns: 25% 55% 20%;
+}
+
+/* creer des grilles complexes */
+.parent-des-element{
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    grid-template-rows: 1fr 1fr 300px;
+    grid-template-areas: 
+    "header header header"
+    "side maim main"
+    "side footer footer";
+}
+.enfant1{
+    grid-area: header;
+}
+
+/* ******************* ABSOLUTE **************** */
+
+/* centrer parfaitement un element en absolute */
+.parent{
+    position: relative;
+}
+.enfant{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

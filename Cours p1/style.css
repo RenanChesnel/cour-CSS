@@ -1,0 +1,219 @@
+
+/* initialisation pour tout les elements */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+/* 
+-----------------
+--------TEXT-----
+----------------- */
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@300&display=swap');
+
+
+
+body{
+    color: black;
+    font-family: sans-serif;
+}
+
+h1{
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    font-size: 2.5rem;
+    color: rgb(17, 0, 255);
+    text-shadow: 2px 2px 0.2px ;
+    text-align: center;
+    font-family:'Akshar', sans-serif;
+}
+
+/* 
+-----------------------
+--------BACKGTOUND-----
+---------------------- */
+
+body{
+    
+    /* immage situation (left,right,et ...)/cover = pas de repetition */
+    background:url(./assets/bg.jpg) no-repeat fixed center/cover;
+    /* prend 100% de l'écran utilisateur */
+    /* height: 100vh; */
+    /* empecher le scroll */
+    /* overflow: hidden; */
+}
+
+/* 
+-----------------------
+--------BOXES-----
+---------------------- */
+main{
+    background: whitesmoke;
+    /* adapter à la largeur de l'ecran  */
+    width: 90%;
+    min-height: 500px;
+    /* haut droite bas gauche / auto : centrer */
+    margin: 10px auto 10px auto ;
+    /* marge dans la marge */
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 0.25 blue;
+
+}
+
+.positioning, 
+.flexbox,
+.grid{
+    border: 2px solid skyblue;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    
+
+}
+
+.positioning{
+    /* definir positioning comme element parent */
+    position: relative;
+}
+
+h2{
+    margin: 0;
+}
+
+#circle{
+    height: 60px;
+    width: 60px;
+    background: skyblue;
+    padding: 20px;
+    /* realisation du cercle */
+    border-radius: 50%;
+    position: absolute;
+    /* position du cercle */
+    top: -10px;
+    right: 110px;
+    box-shadow: 0px 2px 12px 5px rgba(51,51,51,0.13);
+    /* positionner le cercle deavnt le rectangle */
+    z-index: 1;
+}
+#rectangle{
+    height: 15px;
+    /* largeur de 25*ù du parent (positioning)) */
+    width: 25%;
+    background: slateblue;
+    padding: 20px;
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    /* centrer le rectangle par rapport à l'ecran */
+    transform: translateX(-50%);
+
+    
+}
+
+/* 
+-----------------------
+--------FLEX BOXES-----
+---------------------- */
+ul{
+    /* aigner les element de la liste */
+    display: flex;
+    /* repartir equitablement les boites dans l'espace */
+    justify-content: space-around;
+}
+li{
+    /* suppression de point de liste */
+    list-style-type: none;
+    font-size: 0.8rem;
+    height: 160px;
+    width: 160px;
+    background: #c6db94;
+    /* centrer le text  */
+    display: flex;
+    /* vertical */
+    align-items: center;
+    /* Horizontal */
+    justify-content: center;
+}
+
+/* 
+-----------------------
+--------GRID-----
+---------------------- */
+
+.grid-container{
+    /* gerer l'espace occupé par les enfants (30% & 70%) */
+    display: grid;
+    grid-template-columns: 30% 70%;
+    padding: 20px;
+}
+.img{
+    text-align: center;
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "i1 i2"
+    "ta ta"
+    "bt bt";
+}
+#firstname{
+    grid-area: i1;
+}
+#surname{
+    grid-area: i2;
+}
+textarea{
+    grid-area: ta;
+    resize: none;
+}
+input[type="submit"]{
+    grid-area: bt;
+    /* afficher pointeur cliquable */
+    cursor: pointer;
+    background: cyan;
+    transition: 0.4s;
+}
+input, textarea{
+    margin: 5px;
+    height: 50px;
+    border: 1px solid darkblue;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input[type="submit"]:hover{
+    /* changer de couleur le bont quand on passe dessus */
+    background: darkblue;
+    color: white;
+}
+
+/* 
+-----------------------
+--------RESPONSIVE-----
+---------------------- */
+@media screen and (max-width:735px){
+    .grid-container{
+        display: block;
+    }
+}
+@media screen and (max-width:540px){
+    form{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+        "i1"
+        "i2"
+        "ta"
+        "bt";
+    }
+}
